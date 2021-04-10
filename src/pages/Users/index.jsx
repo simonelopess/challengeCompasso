@@ -39,10 +39,10 @@ function Users() {
           </div>
           <section className="mt-5">
             <UserPanel
-              profileImage={userSelected.avatar_url}
-              fullName={userSelected.name}
-              location={userSelected.location}
-              bio={userSelected.bio}
+              image={userSelected.avatar_url}
+              title={userSelected.name}
+              description={userSelected.bio}
+              footer={userSelected.location}
             />
           </section>
         </div>

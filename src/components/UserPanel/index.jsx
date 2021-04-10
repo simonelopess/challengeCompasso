@@ -26,7 +26,7 @@ const UserPanel = (props) => {
         <div className="row no-gutters">
           <div className="col-md-4">
             <img
-              src={props.profileImage}
+              src={props.image}
               alt="Foto de Perfil"
               style={profileImage}
             ></img>
@@ -34,7 +34,7 @@ const UserPanel = (props) => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
-                {props.fullName}
+                {props.title}
                 <a href="#" aria-label="repositórios">
                   <span
                     className="badge badge-pill badge-danger ml-3"
@@ -54,9 +54,9 @@ const UserPanel = (props) => {
                   </span>
                 </a>
               </h5>
-              <p className="card-text">{props.bio}</p>
+              <p className="card-text">{props.description}</p>
               <p className="card-text">
-                <small className="text-muted">{props.location}</small>
+                <small className="text-muted">{props.footer}</small>
               </p>
             </div>
           </div>
@@ -67,10 +67,10 @@ const UserPanel = (props) => {
 };
 
 UserPanel.propTypes = {
-  profileImage: PropTypes.string,
-  fullName: PropTypes.string,
-  location: PropTypes.string,
-  bio: PropTypes.string,
+  image: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  footer: PropTypes.string,
 };
 
 export default UserPanel;
