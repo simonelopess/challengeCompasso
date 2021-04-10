@@ -20,7 +20,7 @@ function InputSearch(props) {
               className="btn btn-primary"
               type="button"
               onClick={() => (
-                props.userSelected(userName), props.onSubmit(userName)
+                props.inputValue(userName), props.onSubmit(userName)
               )}
             >
               {props.labelButton}
@@ -36,7 +36,7 @@ InputSearch.propTypes = {
   size: PropTypes.string,
   labelButton: PropTypes.string,
   placeholder: PropTypes.string,
-  userSelected: PropTypes.func,
+  inputValue: PropTypes.func,
   onSubmit: PropTypes.func,
 };
 

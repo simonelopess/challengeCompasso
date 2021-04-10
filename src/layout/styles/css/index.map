@@ -3,13 +3,11 @@
 	"file": "index.css",
 	"sources": [
 		"../scss/index.scss",
-		"../scss/_global.scss",
-		"../scss/_Users.scss"
+		"../scss/_global.scss"
 	],
 	"sourcesContent": [
-		"@import \"./global\";\r\n@import \"./Users\";\r\n",
-		".box-shadow {\r\n  box-shadow: 0 2px 4px 0 RGB(0 0 0 / 5%), 0 4px 8px 0 RGB(0 0 0 / 5%);\r\n}\r\n",
-		""
+		"@import \"./global\";\r\n",
+		".box-shadow {\r\n  box-shadow: 0 2px 4px 0 RGB(0 0 0 / 5%), 0 4px 8px 0 RGB(0 0 0 / 5%);\r\n}\r\n"
 	],
 	"names": [],
 	"mappings": ";ACAA,AAAA,WAAW,CAAC;EACV,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,aAAe,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,aAAe;CACrE"
