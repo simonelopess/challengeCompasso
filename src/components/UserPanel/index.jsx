@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const containerDashboad = {
   maxWidth: "590px",
@@ -35,15 +36,16 @@ const UserPanel = (props) => {
             <div className="card-body">
               <h5 className="card-title">
                 {props.title}
-                <a href="#" aria-label="repositórios">
+                <Link to="/repositories" aria-label="repositórios">
                   <span
                     className="badge badge-pill badge-danger ml-3"
                     style={badge}
+                    onClick={() => props.getRepo(props.user)}
                   >
                     <i className="fal fa-file-chart-line mr-1"></i>
                     Repo
                   </span>
-                </a>
+                </Link>
                 <a href="#" aria-label="favoritos">
                   <span
                     className="badge badge-pill badge-warning ml-1"
@@ -71,6 +73,8 @@ UserPanel.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   footer: PropTypes.string,
+  user: PropTypes.string,
+  getRepo: PropTypes.func,
 };
 
 export default UserPanel;

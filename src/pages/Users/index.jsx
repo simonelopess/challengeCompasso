@@ -9,6 +9,7 @@ function Users() {
   const [userSelected, setUserSelected] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [inputValue, setInputValue] = useState("");
+  const [repoData, setRepoData] = useState("");
 
   async function getUser(user) {
     setUserSelected("");
@@ -22,6 +23,19 @@ function Users() {
     }
   }
   console.log(userSelected);
+
+  // eslint-disable-next-line no-unused-vars
+  async function getDataRepo(user) {
+    try {
+      const { data } = await axios(
+        `${api.baseURL}/${user}/repos?client_id=${api.client_id}&client_secret=${api.client_secret}`
+      );
+      setRepoData(data);
+    } catch (error) {
+      console.log("Repositório não encontrado");
+    }
+  }
+  console.log(repoData);
 
   return (
     <>
@@ -43,6 +57,8 @@ function Users() {
               title={userSelected.name}
               description={userSelected.bio}
               footer={userSelected.location}
+              user={userSelected.login}
+              getRepo={getDataRepo}
             />
           </section>
         </div>
