@@ -12,7 +12,6 @@ const profileImage = {
 
 const badge = {
   fontSize: "0.7em",
-  cursor: "pointer",
 };
 
 const badgeStarred = {
@@ -27,7 +26,7 @@ const UserPanel = (props) => {
         <div className="row no-gutters">
           <div className="col-md-4">
             <img
-              src={props.image}
+              src={props.avatar_url}
               alt="Foto de Perfil"
               style={profileImage}
             ></img>
@@ -35,28 +34,25 @@ const UserPanel = (props) => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
-                {props.title}
+                {props.name}
                 <span
                   className="badge badge-pill badge-danger ml-3"
                   style={badge}
-                  onClick={() => props.getRepo(props.user)}
                 >
                   <i className="fal fa-file-chart-line mr-1"></i>
                   Repo
                 </span>
-                <a href="#" aria-label="favoritos">
-                  <span
-                    className="badge badge-pill badge-warning ml-1"
-                    style={(badge, badgeStarred)}
-                  >
-                    <i className="far fa-star mr-1"></i>
-                    Start
-                  </span>
-                </a>
+                <span
+                  className="badge badge-pill badge-warning ml-1"
+                  style={(badge, badgeStarred)}
+                >
+                  <i className="far fa-star mr-1"></i>
+                  Start
+                </span>
               </h5>
-              <p className="card-text">{props.description}</p>
+              <p className="card-text">{props.bio}</p>
               <p className="card-text">
-                <small className="text-muted">{props.footer}</small>
+                <small className="text-muted">{props.location}</small>
               </p>
             </div>
           </div>
@@ -67,12 +63,11 @@ const UserPanel = (props) => {
 };
 
 UserPanel.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  footer: PropTypes.string,
-  user: PropTypes.string,
-  getRepo: PropTypes.func,
+  avatar_url: PropTypes.string,
+  name: PropTypes.string,
+  bio: PropTypes.string,
+  location: PropTypes.string,
+  repoData: PropTypes.array,
 };
 
 export default UserPanel;

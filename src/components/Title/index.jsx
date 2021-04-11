@@ -5,7 +5,7 @@ function Title(props) {
   return (
     <>
       <h1 className="h1 mb-4">
-        Explore {props.label} no<br></br>
+        Procure por {props.label} no<br></br>
         Github.
       </h1>
     </>

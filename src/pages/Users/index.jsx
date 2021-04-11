@@ -1,41 +1,39 @@
 import React, { useState } from "react";
 import axios from "axios";
-import InputSearch from "../../components/InputSearch";
+// import InputSearch from "../../components/InputSearch";
 import Title from "../../components/Title/index";
 import api from "../../services/api";
 import UserPanel from "../../components/UserPanel";
+import Repo from "../Repos";
 
 function Users() {
   const [userSelected, setUserSelected] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [inputValue, setInputValue] = useState("");
-  const [repoData, setRepoData] = useState("");
+  const [repoData, setRepoData] = useState(null);
 
   async function getUser(user) {
     setUserSelected("");
     try {
       const { data } = await axios(
-        `${api.baseURL}/${user}?client_id=${api.client_id}&client_secret=${api.client_secret}`
+        `${api.userURL}/${user}?client_id=${api.client_id}&client_secret=${api.client_secret}`
       );
       setUserSelected(data);
     } catch (error) {
       console.log("Ocorreu um erro ao buscar itens");
     }
   }
-  console.log(userSelected);
 
-  // eslint-disable-next-line no-unused-vars
   async function getDataRepo(user) {
     try {
       const { data } = await axios(
-        `${api.baseURL}/${user}/repos?client_id=${api.client_id}&client_secret=${api.client_secret}`
+        `${api.userURL}/${user}/repos?client_id=${api.client_id}&client_secret=${api.client_secret}`
       );
       setRepoData(data);
     } catch (error) {
       console.log("Repositório não encontrado");
     }
   }
-  console.log(repoData);
 
   return (
     <>
@@ -43,23 +41,40 @@ function Users() {
         <div className="container-fluid align-self-center">
           <Title label="usuários" />
           <div className="row">
-            <InputSearch
-              placeholder="Digite o usuário"
-              labelButton="Pesquisar"
-              size="col-md-8"
-              inputValue={setInputValue}
-              onSubmit={getUser}
-            />
+            <form className="col-md-8">
+              <div className="input-group input-group-lg">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Digite o usuário"
+                  aria-label="Email"
+                  onChange={(e) => getUser(e.target.value)}
+                />
+              </div>
+            </form>
           </div>
           <section className="mt-5">
-            <UserPanel
-              image={userSelected.avatar_url}
-              title={userSelected.name}
-              description={userSelected.bio}
-              footer={userSelected.location}
-              user={userSelected.login}
-              getRepo={getDataRepo}
-            />
+            <p>
+              <em>Resultado encontrado para: </em>
+              <strong> {inputValue}</strong>
+            </p>
+
+            {userSelected.length !== 0 ? (
+              <div>
+                <UserPanel
+                  avatar_url={userSelected?.avatar_url}
+                  name={userSelected?.name}
+                  bio={userSelected?.bio}
+                  location={userSelected?.location}
+                />
+                <Repo
+                  repoData={repoData}
+                  getRepo={getDataRepo}
+                  user={userSelected?.login}
+                  url={userSelected?.url}
+                />
+              </div>
+            ) : null}
           </section>
         </div>
       </div>

@@ -4,7 +4,7 @@ import logo from "../../assets/location_searching_black_24dp.svg";
 
 const Navbar = () => (
   <>
-    <nav className="navbar navbar-expand-md navbar-light bg-light box-shadow mb-3">
+    <nav className="navbar navbar-expand-md navbar-light bg-light box-shadow mb-3 fixed-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img src={logo}></img> GitFound
