@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 const containerDashboad = {
   maxWidth: "590px",
@@ -13,6 +12,7 @@ const profileImage = {
 
 const badge = {
   fontSize: "0.7em",
+  cursor: "pointer",
 };
 
 const badgeStarred = {
@@ -36,16 +36,14 @@ const UserPanel = (props) => {
             <div className="card-body">
               <h5 className="card-title">
                 {props.title}
-                <Link to="/repositories" aria-label="repositórios">
-                  <span
-                    className="badge badge-pill badge-danger ml-3"
-                    style={badge}
-                    onClick={() => props.getRepo(props.user)}
-                  >
-                    <i className="fal fa-file-chart-line mr-1"></i>
-                    Repo
-                  </span>
-                </Link>
+                <span
+                  className="badge badge-pill badge-danger ml-3"
+                  style={badge}
+                  onClick={() => props.getRepo(props.user)}
+                >
+                  <i className="fal fa-file-chart-line mr-1"></i>
+                  Repo
+                </span>
                 <a href="#" aria-label="favoritos">
                   <span
                     className="badge badge-pill badge-warning ml-1"
