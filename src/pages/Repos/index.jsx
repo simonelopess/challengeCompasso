@@ -41,7 +41,7 @@ function Repo(props) {
           aria-labelledby="pills-repository-tab"
         >
           <ol className="list-group list-group-numbered">
-            {props.repoData?.map((item, index) => {
+            {props.repositorys?.map((repository, index) => {
               return (
                 <li
                   className="list-group-item d-flex justify-content-between align-items-start"
@@ -49,11 +49,11 @@ function Repo(props) {
                 >
                   <div className="ms-2 me-auto">
                     <div className="fw-bold">
-                      <a href={item.url} target="blank">
-                        {item.name}
+                      <a href={repository.url} target="blank">
+                        {repository.name}
                       </a>
                     </div>
-                    {item.description}
+                    {repository.description}
                   </div>
                 </li>
               );
@@ -66,7 +66,7 @@ function Repo(props) {
           role="tabpanel"
           aria-labelledby="pills-favorites-tab"
         >
-          {props.starred?.map((item, index) => {
+          {props.starreds?.map((starred, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between align-items-start"
@@ -75,14 +75,14 @@ function Repo(props) {
                 <div className="ms-2 me-auto">
                   <div className="fw-bold">
                     <a
-                      href={`https://www.github.com/${item.full_name}`}
+                      href={`https://www.github.com/${starred.full_name}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {item.full_name}
+                      {starred.full_name}
                     </a>
                   </div>
-                  {item.description}
+                  {starred.description}
                 </div>
               </li>
             );
@@ -93,11 +93,10 @@ function Repo(props) {
   );
 }
 Repo.propTypes = {
-  repoData: PropTypes.array,
-  getRepo: PropTypes.func,
+  repositorys: PropTypes.array,
   user: PropTypes.string,
   url: PropTypes.string,
-  starred: PropTypes.array,
+  starreds: PropTypes.array,
 };
 
 export default Repo;

@@ -7,20 +7,20 @@ import UserPanel from "../../components/UserPanel";
 import Repo from "../Repos";
 
 function Users() {
-  const [userSelected, setUserSelected] = useState("");
-  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [repoData, setRepoData] = useState(null);
-  const [starred, setStarred] = useState(null);
+  const [repositorys, setRepositorys] = useState(null);
+  const [starreds, setStarreds] = useState(null);
+
   async function getUser(user) {
-    setUserSelected("");
+    setUser("");
     try {
       const { data } = await axios(
         `${api.userURL}/${user}?client_id=${api.client_id}&client_secret=${api.client_secret}`
       );
-      setUserSelected(data);
+      setUser(data);
     } catch (error) {
-      console.log("Ocorreu um erro ao buscar itens");
+      alert("Usuário não encontrado");
     }
   }
 
@@ -29,7 +29,7 @@ function Users() {
       const { data } = await axios(
         `${api.userURL}/${user}/repos?client_id=${api.client_id}&client_secret=${api.client_secret}`
       );
-      setRepoData(data);
+      setRepositorys(data);
     } catch (error) {
       console.log("Repositório não encontrado");
     }
@@ -40,7 +40,7 @@ function Users() {
       const { data } = await axios(
         `${api.userURL}/${user}/starred?client_id=${api.client_id}&client_secret=${api.client_secret}`
       );
-      setStarred(data);
+      setStarreds(data);
     } catch (error) {
       console.log("Repositório não encontrado");
     }
@@ -86,19 +86,19 @@ function Users() {
               <strong> {inputValue}</strong>
             </p>
 
-            {userSelected.length !== 0 ? (
+            {user.length !== 0 ? (
               <div>
                 <UserPanel
-                  avatar_url={userSelected?.avatar_url}
-                  name={userSelected?.name}
-                  bio={userSelected?.bio}
-                  location={userSelected?.location}
+                  avatar_url={user?.avatar_url}
+                  name={user?.name}
+                  bio={user?.bio}
+                  location={user?.location}
                 />
                 <Repo
-                  repoData={repoData}
-                  user={userSelected?.login}
-                  url={userSelected?.url}
-                  starred={starred}
+                  repositorys={repositorys}
+                  user={user?.login}
+                  url={user?.url}
+                  starreds={starreds}
                 />
               </div>
             ) : null}
