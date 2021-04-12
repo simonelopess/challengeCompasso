@@ -63,8 +63,8 @@ const UserPanel = (props) => {
 UserPanel.propTypes = {
   avatar_url: PropTypes.string,
   name: PropTypes.string,
-  following: PropTypes.string,
-  followers: PropTypes.string,
+  following: PropTypes.number,
+  followers: PropTypes.number,
   bio: PropTypes.string,
   location: PropTypes.string,
   repoData: PropTypes.array,
