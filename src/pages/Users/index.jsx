@@ -55,7 +55,10 @@ function Users() {
         >
           <Title label="usuários" />
           <div className="row">
-            <form className="col-md-8">
+            <form
+              className="col-md-8"
+              onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
+            >
               <div className="input-group input-group-lg">
                 <input
                   type="text"
