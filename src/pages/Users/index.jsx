@@ -4,7 +4,7 @@ import axios from "axios";
 import Title from "../../components/Title/index";
 import api from "../../services/api";
 import UserPanel from "../../components/UserPanel";
-import Repo from "../Repos";
+import Repo from "../../components/Repos";
 
 function Users() {
   const [user, setUser] = useState("");
@@ -93,6 +93,8 @@ function Users() {
                   name={user?.name}
                   bio={user?.bio}
                   location={user?.location}
+                  followers={user?.followers}
+                  following={user?.following}
                 />
                 <Repo
                   repositorys={repositorys}
