@@ -82,8 +82,8 @@ function Users() {
           </div>
           <section className="mt-5">
             <p>
-              <em>Resultado encontrado para: </em>
-              <strong> {inputValue}</strong>
+              <em>Última pesquisa: </em>
+              <strong> {user.login}</strong>
             </p>
 
             {user.length !== 0 ? (
