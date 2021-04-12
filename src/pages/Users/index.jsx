@@ -11,7 +11,7 @@ function Users() {
   // eslint-disable-next-line no-unused-vars
   const [inputValue, setInputValue] = useState("");
   const [repoData, setRepoData] = useState(null);
-
+  const [starred, setStarred] = useState(null);
   async function getUser(user) {
     setUserSelected("");
     try {
@@ -35,10 +35,24 @@ function Users() {
     }
   }
 
+  async function getStarred(user) {
+    try {
+      const { data } = await axios(
+        `${api.userURL}/${user}/starred?client_id=${api.client_id}&client_secret=${api.client_secret}`
+      );
+      setStarred(data);
+    } catch (error) {
+      console.log("Repositório não encontrado");
+    }
+  }
+
   return (
     <>
       <div className="container">
-        <div className="container-fluid align-self-center">
+        <div
+          className="container-fluid align-self-center"
+          style={{ marginTop: "70px" }}
+        >
           <Title label="usuários" />
           <div className="row">
             <form className="col-md-8">
@@ -48,8 +62,21 @@ function Users() {
                   className="form-control"
                   placeholder="Digite o usuário"
                   aria-label="Email"
-                  onChange={(e) => getUser(e.target.value)}
+                  onChange={(e) => setInputValue(e.target.value)}
                 />
+                <span className="input-group-append">
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={() => (
+                      getUser(inputValue),
+                      getDataRepo(inputValue),
+                      getStarred(inputValue)
+                    )}
+                  >
+                    Pesquisar
+                  </button>
+                </span>
               </div>
             </form>
           </div>
@@ -69,9 +96,9 @@ function Users() {
                 />
                 <Repo
                   repoData={repoData}
-                  getRepo={getDataRepo}
                   user={userSelected?.login}
                   url={userSelected?.url}
+                  starred={starred}
                 />
               </div>
             ) : null}

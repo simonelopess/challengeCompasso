@@ -15,7 +15,6 @@ function Repo(props) {
             role="tab"
             aria-controls="pills-repository"
             aria-selected="true"
-            onClick={() => props.getRepo(props.user)}
           >
             Repositórios
           </a>
@@ -43,7 +42,6 @@ function Repo(props) {
         >
           <ol className="list-group list-group-numbered">
             {props.repoData?.map((item, index) => {
-              console.log("item", item.url);
               return (
                 <li
                   className="list-group-item d-flex justify-content-between align-items-start"
@@ -68,7 +66,27 @@ function Repo(props) {
           role="tabpanel"
           aria-labelledby="pills-favorites-tab"
         >
-          Favoritos
+          {props.starred?.map((item, index) => {
+            return (
+              <li
+                className="list-group-item d-flex justify-content-between align-items-start"
+                key={index}
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">
+                    <a
+                      href={`https://www.github.com/${item.full_name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.full_name}
+                    </a>
+                  </div>
+                  {item.description}
+                </div>
+              </li>
+            );
+          })}
         </div>
       </div>
     </>
@@ -79,6 +97,7 @@ Repo.propTypes = {
   getRepo: PropTypes.func,
   user: PropTypes.string,
   url: PropTypes.string,
+  starred: PropTypes.array,
 };
 
 export default Repo;
